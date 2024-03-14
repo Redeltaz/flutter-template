@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  flutter:
+    image: flutter-project
+    container_name: flutter-project
+    restart: no
+    network_mode: "host"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: flutter
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - ./:/app
+
+  emulator:
+    image: emulator
+    container_name: emulator
+    restart: no
+    network_mode: "host"
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: emulator
